@@ -145,5 +145,40 @@ namespace GameOfLife.Tests
             Assert.False(gen1[2, 1]);
             Assert.True(gen1[2, 2]);
         }
+
+        [Fact]
+        public void Board_5x5_BlinkerTest()
+        {
+            //     
+            //  *  
+            //  *  
+            //  *  
+            //     
+
+            var gen0 = new bool[5, 5];
+            for (int i = 0; i < 3; i++)
+            {
+                gen0[i + 1, 2] = true;
+            }
+
+            var stepper = new Stepper();
+
+            var gen1 = stepper.GetNextGeneration(gen0);
+
+            for (int i = 0; i < 5; i++)
+            {
+                Assert.False(gen1[0, i]);
+                Assert.False(gen1[1, i]);
+                Assert.False(gen1[3, i]);
+                Assert.False(gen1[4, i]);
+            }
+
+            //középső sor:
+            Assert.False(gen1[2, 0]);
+            Assert.True(gen1[2, 1]);
+            Assert.True(gen1[2, 2]);
+            Assert.True(gen1[2, 3]);
+            Assert.False(gen1[2, 4]);
+        }
     }
 }
