@@ -14,8 +14,8 @@ namespace GameOfLife.Core
     {
         static readonly List<Point> Neighbours = new List<Point>
         {
-            new Point(-1,-1), new Point(-1,0), new Point(-1,1), new Point(0,1),
-            new Point(1,1), new Point(1,0), new Point(1,-1), new Point(0,-1),
+            new Point(-1,-1), new Point(0,-1), new Point(1,-1), new Point(1,0),
+            new Point(1,1), new Point(0,1), new Point(-1,1), new Point(-1,0),
         };
 
         public bool[,] GetNextGeneration(bool[,] initial)
@@ -34,11 +34,12 @@ namespace GameOfLife.Core
                 {
                     for (int i = 0; i < Neighbours.Count; i++)
                     {
-                        var neighbourPosition = new Point(col + Neighbours[i].X, row + Neighbours[i].Y);
-                        if (neighbourPosition.X >= 0 && neighbourPosition.Y >= 0
-                            && neighbourPosition.X < width && neighbourPosition.Y < height)
+                        var neighbourPosition = new Point(row + Neighbours[i].Row, col + Neighbours[i].Col);
+                        if (neighbourPosition.Col >= 0 && neighbourPosition.Row >= 0
+                            && neighbourPosition.Col < width && neighbourPosition.Row < height)
                         {
-                            neighbourCounts[row, col]++;
+                            if(initial[neighbourPosition.Row, neighbourPosition.Col])
+                                neighbourCounts[row, col]++;
                         }
                     }
                 }

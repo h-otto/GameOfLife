@@ -8,13 +8,13 @@ namespace GameOfLife.Core
 {
     struct Point
     {
-        public Point(int x, int y)
+        public Point(int row, int col)
         {
-            X = x;
-            Y = y;
+            Col = col;
+            Row = row;
         }
 
-        public readonly int X;
-        public readonly int Y;
+        public readonly int Col;
+        public readonly int Row;
     }
 }

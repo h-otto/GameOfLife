@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameOfLife.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Game Of Life" Height="600" Width="800">
+    <DockPanel>
+        <Grid DockPanel.Dock="Left" MinWidth="100">
+            <StackPanel>
+                <Button x:Name="btnClear" Content="Clear" Click="btnClear_Click" ></Button>
+                <Button x:Name="btnBlinker" Content="Blinker" Click="Blinker_Click"></Button>
+                <Button x:Name="btnBeacon" Content="Beacon" Click="Beacon_Click"></Button>
+                <Button x:Name="btnRandom" Content="Random (50%)" Click="btnRandom_Click"></Button>
+                <Button x:Name="btnStep" Content="Step" Click="btnStep_Click"></Button>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <Viewbox Stretch="Uniform" HorizontalAlignment="Center">
+                <Border BorderBrush="Black" BorderThickness="1" Background="{x:Null}">
+                    <Grid x:Name="grdBoard" Width="500" Height="500"></Grid>
+                </Border>
+            </Viewbox>
+        </Grid>
+    </DockPanel>
 </Window>
