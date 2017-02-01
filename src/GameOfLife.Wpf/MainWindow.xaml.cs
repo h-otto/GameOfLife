@@ -47,13 +47,17 @@ namespace GameOfLife.Wpf
 
         private void CreateNewBoard(int rowCount, int colCount)
         {
-            AutoplayTimer.Stop();
+            StopAutoplay();
 
             if (mVisualModel != null)
+            {
                 mVisualModel.Reset();
+                mVisualModel.CellLeftMouseDown -= VisualModel_CellLeftMouseDown;
+            }
 
             mModel = new BoardModel(rowCount, colCount, Stepper);
             mVisualModel = new VisualBoardModel(grdBoard, mModel);
+            mVisualModel.CellLeftMouseDown += VisualModel_CellLeftMouseDown;
         }
 
         private void StopAutoplay()
@@ -62,6 +66,11 @@ namespace GameOfLife.Wpf
         }
 
 
+
+        private void VisualModel_CellLeftMouseDown(IntPoint position)
+        {
+            mModel.ToggleCellAt(position);
+        }
 
         private void AutoplayTimer_Tick(object sender, EventArgs e)
         {

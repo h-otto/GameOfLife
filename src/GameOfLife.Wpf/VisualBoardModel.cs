@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameOfLife.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -83,6 +84,12 @@ namespace GameOfLife.Wpf
                     };
                     elem.ToolTip = $"({row}; {col})";
 
+                    var point = new IntPoint(row, col);
+                    elem.MouseLeftButtonDown += (s, e) =>
+                    {
+                        CellLeftMouseDown?.Invoke(point);
+                    };
+
                     Elements[row, col] = elem;
 
                     elem.SetValue(Grid.RowProperty, row);
@@ -126,5 +133,7 @@ namespace GameOfLife.Wpf
                 }
             }
         }
+
+        public event Action<IntPoint> CellLeftMouseDown;
     }
 }

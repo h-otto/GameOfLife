@@ -12,7 +12,7 @@ namespace GameOfLife.Wpf
         }
 
         public readonly EModelChangeType Type;
-        public readonly List<Point> ChangedCells = new List<Point>();
+        public readonly List<IntPoint> ChangedCells = new List<IntPoint>();
     }
 
     public enum EModelChangeType

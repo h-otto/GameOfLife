@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace GameOfLife.Core
 {
-    public struct Point
+    public struct IntPoint
     {
-        public Point(int row, int col)
+        public IntPoint(int row, int col)
         {
             Col = col;
             Row = row;

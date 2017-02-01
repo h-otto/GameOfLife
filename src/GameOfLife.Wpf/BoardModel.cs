@@ -75,7 +75,7 @@ namespace GameOfLife.Wpf
                 {
                     Data[row, col] = value;
                     var e = new ModelChangedEventArgs(EModelChangeType.CellList);
-                    e.ChangedCells.Add(new Point(row, col));
+                    e.ChangedCells.Add(new IntPoint(row, col));
                     ModelChanged?.Invoke(e);
                 }
             }
@@ -85,7 +85,7 @@ namespace GameOfLife.Wpf
 
         public void Clear()
         {
-            var changedCells = new List<Point>();
+            var changedCells = new List<IntPoint>();
 
             for (int row = 0; row < RowCount; row++)
             {
@@ -93,7 +93,7 @@ namespace GameOfLife.Wpf
                 {
                     if (Data[row, col] == true)
                     {
-                        changedCells.Add(new Point(row, col));
+                        changedCells.Add(new IntPoint(row, col));
                         Data[row, col] = false;
                     }
                 }
@@ -105,6 +105,16 @@ namespace GameOfLife.Wpf
                 e.ChangedCells.AddRange(changedCells);
                 ModelChanged?.Invoke(e);
             }
+        }
+
+        public void ToggleCellAt(IntPoint p)
+        {
+            Debug.Assert(p.Col >= 0);
+            Debug.Assert(p.Row >= 0);
+            Debug.Assert(p.Col < ColCount);
+            Debug.Assert(p.Row < RowCount);
+
+            this[p.Row, p.Col] = !Data[p.Row, p.Col];
         }
     }
 }

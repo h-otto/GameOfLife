@@ -12,10 +12,10 @@ namespace GameOfLife.Core
     /// </summary>
     public class Stepper
     {
-        static readonly List<Point> Neighbours = new List<Point>
+        static readonly List<IntPoint> Neighbours = new List<IntPoint>
         {
-            new Point(-1,-1), new Point(0,-1), new Point(1,-1), new Point(1,0),
-            new Point(1,1), new Point(0,1), new Point(-1,1), new Point(-1,0),
+            new IntPoint(-1,-1), new IntPoint(0,-1), new IntPoint(1,-1), new IntPoint(1,0),
+            new IntPoint(1,1), new IntPoint(0,1), new IntPoint(-1,1), new IntPoint(-1,0),
         };
 
         public bool[,] GetNextGeneration(bool[,] initial)
@@ -34,7 +34,7 @@ namespace GameOfLife.Core
                 {
                     for (int i = 0; i < Neighbours.Count; i++)
                     {
-                        var neighbourPosition = new Point(row + Neighbours[i].Row, col + Neighbours[i].Col);
+                        var neighbourPosition = new IntPoint(row + Neighbours[i].Row, col + Neighbours[i].Col);
                         if (neighbourPosition.Col >= 0 && neighbourPosition.Row >= 0
                             && neighbourPosition.Col < width && neighbourPosition.Row < height)
                         {
