@@ -57,7 +57,10 @@ namespace GameOfLife.Wpf
             }
 
             if (changed)
-                ModelChanged?.Invoke();
+            {
+                var e = new ModelChangedEventArgs(EModelChangeType.Reset);
+                ModelChanged?.Invoke(e);
+            }
         }
 
         public bool this[int row, int col]
@@ -71,32 +74,37 @@ namespace GameOfLife.Wpf
                 if (value != Data[row, col])
                 {
                     Data[row, col] = value;
-                    ModelChanged?.Invoke();
+                    var e = new ModelChangedEventArgs(EModelChangeType.CellList);
+                    e.ChangedCells.Add(new Point(row, col));
+                    ModelChanged?.Invoke(e);
                 }
             }
         }
 
-        //TODO azt átadni, hogy melyik cellák változtak
-        public event Action ModelChanged;
+        public event Action<ModelChangedEventArgs> ModelChanged;
 
         public void Clear()
         {
-            bool changed = false;
+            var changedCells = new List<Point>();
+
             for (int row = 0; row < RowCount; row++)
             {
                 for (int col = 0; col < ColCount; col++)
                 {
                     if (Data[row, col] == true)
                     {
-                        changed = true;
+                        changedCells.Add(new Point(row, col));
                         Data[row, col] = false;
                     }
                 }
             }
 
-            if (changed)
-                ModelChanged?.Invoke();
-
+            if (changedCells.Any())
+            {
+                var e = new ModelChangedEventArgs(EModelChangeType.CellList);
+                e.ChangedCells.AddRange(changedCells);
+                ModelChanged?.Invoke(e);
+            }
         }
     }
 }

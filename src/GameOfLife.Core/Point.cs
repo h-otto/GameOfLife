@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameOfLife.Core
 {
-    struct Point
+    public struct Point
     {
         public Point(int row, int col)
         {

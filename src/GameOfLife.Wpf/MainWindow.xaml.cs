@@ -32,7 +32,7 @@ namespace GameOfLife.Wpf
             InitializeComponent();
 
             Stepper = new Stepper();
-            mModel = new BoardModel(20, 20, Stepper);
+            mModel = new BoardModel(50, 50, Stepper);
             mVisualModel = new VisualBoardModel(grdBoard, mModel);
         }
 

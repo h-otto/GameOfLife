@@ -44,9 +44,18 @@ namespace GameOfLife.Wpf
             Model.ModelChanged += Model_ModelChanged;
         }
 
-        private void Model_ModelChanged()
+        private void Model_ModelChanged(ModelChangedEventArgs e)
         {
-            UpdateFromModel();
+            if (e.Type == EModelChangeType.Reset)
+                UpdateFromModel();
+            else
+            {
+                foreach (var point in e.ChangedCells)
+                {
+                    var val = Model[point.Row, point.Col];
+                    Elements[point.Row, point.Col].Fill = val ? ElemVisibleFill : ElemHiddenFill;
+                }
+            }
         }
 
         private void CreateCells()
@@ -60,8 +69,8 @@ namespace GameOfLife.Wpf
                     var elem = new Rectangle
                     {
                         Stretch = Stretch.Uniform,
-                        Stroke=Brushes.Black,
-                        StrokeThickness=0.5,
+                        Stroke = Brushes.Black,
+                        StrokeThickness = 0.5,
                         Fill = ElemHiddenFill,
                         //Margin = new Thickness(0.5),
                         RenderTransformOrigin = new Point(0.5, 0.5),
