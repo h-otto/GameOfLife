@@ -89,6 +89,12 @@ namespace GameOfLife.Wpf
 
         private void Blinker_Click(object sender, RoutedEventArgs e)
         {
+            if (mModel.RowCount < 5 || mModel.ColCount < 5)
+            {
+                ShowError("Blinkerhez legalább 5x5-ös tábla kell!");
+                return;
+            }
+
             mModel.Clear();
             mModel[2, 1] = true;
             mModel[2, 2] = true;
@@ -97,13 +103,19 @@ namespace GameOfLife.Wpf
 
         private void Beacon_Click(object sender, RoutedEventArgs e)
         {
+            if (mModel.RowCount < 5 || mModel.ColCount < 6)
+            {
+                ShowError("Beaconhöz legalább 4x6-os tábla kell!");
+                return;
+            }
+
             mModel.Clear();
+            mModel[1, 2] = true;
+            mModel[1, 3] = true;
+            mModel[1, 4] = true;
+            mModel[2, 1] = true;
             mModel[2, 2] = true;
             mModel[2, 3] = true;
-            mModel[2, 4] = true;
-            mModel[3, 1] = true;
-            mModel[3, 2] = true;
-            mModel[3, 3] = true;
         }
 
         private void btnRandom_Click(object sender, RoutedEventArgs e)

@@ -23,9 +23,9 @@
                 <Button x:Name="btnRandom" Content="Véletlen (50%)" Click="btnRandom_Click"></Button>
                 <TextBlock Text="Méretezés" FontWeight="Bold"></TextBlock>
                 <TextBlock>Sorok száma:</TextBlock>
-                <TextBox x:Name="tbRowCount"></TextBox>
+                <TextBox x:Name="tbRowCount">10</TextBox>
                 <TextBlock>Oszlopok száma:</TextBlock>
-                <TextBox x:Name="tbColCount"></TextBox>
+                <TextBox x:Name="tbColCount">10</TextBox>
                 <Button x:Name="btnNewBoard" Click="btnNewBoard_Click">Új tábla</Button>
 
                 <TextBlock Text="Lejátszás" FontSize="20" FontWeight="Bold"></TextBlock>
@@ -34,9 +34,9 @@
             </StackPanel>
         </Grid>
         <Grid>
-            <Viewbox Stretch="Uniform" HorizontalAlignment="Center">
+            <Viewbox Stretch="Uniform" Margin="5">
                 <Border BorderBrush="Black" BorderThickness="1" Background="{x:Null}">
-                    <Grid x:Name="grdBoard" Width="500" Height="500"></Grid>
+                    <Grid x:Name="grdBoard"></Grid>
                 </Border>
             </Viewbox>
         </Grid>

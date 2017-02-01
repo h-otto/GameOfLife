@@ -13,7 +13,7 @@ namespace GameOfLife.Wpf
 {
     class VisualBoardModel
     {
-        const double MaxCellSize = 300000;
+        const double CellSize = 30;
 
         readonly Brush ElemVisibleFill = new SolidColorBrush(Colors.ForestGreen);
         readonly Brush ElemHiddenFill = new SolidColorBrush(Colors.Transparent);
@@ -37,7 +37,7 @@ namespace GameOfLife.Wpf
             ElemHiddenFill.Freeze();
             ElemTransform.Freeze();
 
-            Elements = new Shape[model.RowCount, model.RowCount];
+            Elements = new Shape[model.RowCount, model.ColCount];
 
             CreateLayout();
             CreateCells();
@@ -97,6 +97,8 @@ namespace GameOfLife.Wpf
                     Layout.Children.Add(elem);
                 }
             }
+            Layout.Width = CellSize * ColCount;
+            Layout.Height = CellSize * RowCount;
         }
 
         private void CreateLayout()
@@ -107,7 +109,6 @@ namespace GameOfLife.Wpf
                 Layout.RowDefinitions.Add(new RowDefinition
                 {
                     Height = new GridLength(1, GridUnitType.Star),
-                    MaxHeight = MaxCellSize,
                 });
             }
 
@@ -117,7 +118,6 @@ namespace GameOfLife.Wpf
                 Layout.ColumnDefinitions.Add(new ColumnDefinition
                 {
                     Width = new GridLength(1, GridUnitType.Star),
-                    MaxWidth = MaxCellSize,
                 });
             }
         }
