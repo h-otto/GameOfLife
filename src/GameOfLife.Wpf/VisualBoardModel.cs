@@ -58,6 +58,11 @@ namespace GameOfLife.Wpf
             }
         }
 
+        internal void Reset()
+        {
+            Model.ModelChanged -= Model_ModelChanged;
+        }
+
         private void CreateCells()
         {
             Layout.Children.Clear();

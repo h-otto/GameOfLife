@@ -6,17 +6,31 @@
         xmlns:local="clr-namespace:GameOfLife.Wpf"
         mc:Ignorable="d"
         Title="Game Of Life" Height="600" Width="800">
+    <Window.Resources>
+    </Window.Resources>
     <DockPanel>
-        <Grid DockPanel.Dock="Left" MinWidth="100">
+        <Grid DockPanel.Dock="Left" Width="150">
             <StackPanel>
-                <TextBlock Text="Szereksztés"></TextBlock>
-                <Button x:Name="btnClear" Content="Clear" Click="btnClear_Click" ></Button>
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type FrameworkElement}">
+                        <Setter Property="Margin" Value="0,30,0,0"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Text="Szereksztés" FontSize="20" FontWeight="Bold"></TextBlock>
+                <Button x:Name="btnClear" Content="Üres" Click="btnClear_Click" ></Button>
                 <Button x:Name="btnBlinker" Content="Blinker" Click="Blinker_Click"></Button>
                 <Button x:Name="btnBeacon" Content="Beacon" Click="Beacon_Click"></Button>
-                <Button x:Name="btnRandom" Content="Random (50%)" Click="btnRandom_Click"></Button>
-                <TextBlock Text="Lejátszás"></TextBlock>
-                <Button x:Name="btnStep" Content="Step" Click="btnStep_Click"></Button>
-                <CheckBox x:Name="chbAutoplay" Checked="chbAutoplay_Checked" Unchecked="chbAutoplay_Unchecked">Autoplay</CheckBox>
+                <Button x:Name="btnRandom" Content="Véletlen (50%)" Click="btnRandom_Click"></Button>
+                <TextBlock Text="Méretezés" FontWeight="Bold"></TextBlock>
+                <TextBlock>Sorok száma:</TextBlock>
+                <TextBox x:Name="tbRowCount"></TextBox>
+                <TextBlock>Oszlopok száma:</TextBlock>
+                <TextBox x:Name="tbColCount"></TextBox>
+                <Button x:Name="btnNewBoard" Click="btnNewBoard_Click">Új tábla</Button>
+
+                <TextBlock Text="Lejátszás" FontSize="20" FontWeight="Bold"></TextBlock>
+                <Button x:Name="btnStep" Content="Léptet" Click="btnStep_Click"></Button>
+                <CheckBox x:Name="chbAutoplay" Checked="chbAutoplay_Checked" Unchecked="chbAutoplay_Unchecked">Automatikus léptetés</CheckBox>
             </StackPanel>
         </Grid>
         <Grid>
