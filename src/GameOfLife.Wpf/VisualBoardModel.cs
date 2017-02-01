@@ -57,14 +57,17 @@ namespace GameOfLife.Wpf
             {
                 for (int col = 0; col < ColCount; col++)
                 {
-                    var elem = new Ellipse
+                    var elem = new Rectangle
                     {
                         Stretch = Stretch.Uniform,
+                        Stroke=Brushes.Black,
+                        StrokeThickness=0.5,
                         Fill = ElemHiddenFill,
-                        Margin = new Thickness(0.5),
+                        //Margin = new Thickness(0.5),
                         RenderTransformOrigin = new Point(0.5, 0.5),
-                        RenderTransform = ElemTransform,
+                        //RenderTransform = ElemTransform,
                     };
+                    elem.ToolTip = $"({row}; {col})";
 
                     Elements[row, col] = elem;
 
