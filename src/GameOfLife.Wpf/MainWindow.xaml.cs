@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace GameOfLife.Wpf
 {
@@ -21,7 +22,7 @@ namespace GameOfLife.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        readonly DispatcherTimer AutoplayTimer;
         readonly Stepper Stepper;
 
         BoardModel mModel;
@@ -34,6 +35,15 @@ namespace GameOfLife.Wpf
             Stepper = new Stepper();
             mModel = new BoardModel(50, 50, Stepper);
             mVisualModel = new VisualBoardModel(grdBoard, mModel);
+
+            AutoplayTimer = new DispatcherTimer();
+            AutoplayTimer.Interval = TimeSpan.FromSeconds(0.5);
+            AutoplayTimer.Tick += AutoplayTimer_Tick;
+        }
+
+        private void AutoplayTimer_Tick(object sender, EventArgs e)
+        {
+            mModel.Step();
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -79,6 +89,16 @@ namespace GameOfLife.Wpf
                     }
                 }
             }
+        }
+
+        private void chbAutoplay_Checked(object sender, RoutedEventArgs e)
+        {
+            AutoplayTimer.Start();
+        }
+
+        private void chbAutoplay_Unchecked(object sender, RoutedEventArgs e)
+        {
+            AutoplayTimer.Stop();
         }
     }
 }

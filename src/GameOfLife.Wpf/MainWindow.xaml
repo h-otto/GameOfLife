@@ -9,11 +9,14 @@
     <DockPanel>
         <Grid DockPanel.Dock="Left" MinWidth="100">
             <StackPanel>
+                <TextBlock Text="Szereksztés"></TextBlock>
                 <Button x:Name="btnClear" Content="Clear" Click="btnClear_Click" ></Button>
                 <Button x:Name="btnBlinker" Content="Blinker" Click="Blinker_Click"></Button>
                 <Button x:Name="btnBeacon" Content="Beacon" Click="Beacon_Click"></Button>
                 <Button x:Name="btnRandom" Content="Random (50%)" Click="btnRandom_Click"></Button>
+                <TextBlock Text="Lejátszás"></TextBlock>
                 <Button x:Name="btnStep" Content="Step" Click="btnStep_Click"></Button>
+                <CheckBox x:Name="chbAutoplay" Checked="chbAutoplay_Checked" Unchecked="chbAutoplay_Unchecked">Autoplay</CheckBox>
             </StackPanel>
         </Grid>
         <Grid>
